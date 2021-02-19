@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Rigidbody2D Rb2D = default;
     [SerializeField]
+    private Animator anim = default;
+    [SerializeField]
     private float Speed = default;
     [SerializeField]
     private float JumpForce = default;
@@ -24,7 +26,9 @@ public class Player : MonoBehaviour
     public float JumpTime = default;
     private bool canJump = default;
     private float inFloorRadius = 0.05f;
-    //private bool isJumping = default;
+    private bool isJumping = default;
+    private bool flipX = default;
+    private bool isRunning = default;
 
     public static Player instance;
 
@@ -39,6 +43,8 @@ public class Player : MonoBehaviour
         GetJump();
 
         GetMove();
+
+        SetAnimator();
     }
 
     private void FixedUpdate()
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
 
         Jump();
 
-        //Flip();
+        Flip();
     }
 
     private void GetJump()
@@ -85,18 +91,25 @@ public class Player : MonoBehaviour
         axisMove.Set(Input.GetAxis("Horizontal"), 0f);
     }
 
+    private void SetAnimator()
+    {
+        anim.SetBool("InFloor", inFloor);
+        anim.SetBool("IsRunning", isRunning);
+        anim.SetBool("IsJumping", isJumping);
+    }
+
     private void Move()
     {
         Rb2D.velocity = new Vector2(axisMove.x * Speed, Rb2D.velocity.y);
 
-        //if (axisMove == 0)
-        //{
-        //    isRunning = false;
-        //}
-        //else
-        //{
-        //    isRunning = true;
-        //}
+        if (axisMove.x == 0)
+        {
+            isRunning = false;
+        }
+        else
+        {
+            isRunning = true;
+        }
     }
 
     private void Jump()
@@ -106,28 +119,28 @@ public class Player : MonoBehaviour
         if (Rb2D.velocity.y < 0)
         {
             Rb2D.gravityScale = lessGravity;
-            //isJumping = false;
+            isJumping = false;
         }
         else if (Rb2D.velocity.y > 0 && !Input.GetKeyDown(KeyCode.UpArrow))
         {
             Rb2D.gravityScale = greaterGravity;
-            //isJumping = true;
+            isJumping = true;
         }
         else
         {
             Rb2D.gravityScale = 1;
-            //isJumping = false;
+            isJumping = false;
         }
     }
 
-    //private void Flip()
-    //{
-    //    if ((axisMove < 0 && flipX) || (axisMove > 0 && !flipX))
-    //    {
-    //        flipX = !flipX;
-    //        Vector3 newScale = transform.localScale;
-    //        newScale.x *= -1;
-    //        transform.localScale = newScale;
-    //    }
-    //}
+    private void Flip()
+    {
+        if ((axisMove.x < 0 && flipX) || (axisMove.x > 0 && !flipX))
+        {
+            flipX = !flipX;
+            Vector3 newScale = transform.localScale;
+            newScale.x *= -1;
+            transform.localScale = newScale;
+        }
+    }
 }
