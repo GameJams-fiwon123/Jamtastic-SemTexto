@@ -5,9 +5,10 @@ using UnityEngine;
 public class DrawGizmoMap : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 AspectRatioCamera = default;
+    private Vector2Int AspectRatioCamera = default;
     [SerializeField]
-    private Vector2 SizeMap = default;
+    private Vector2Int SizeMap = default;
+    public Vector2Int sizeMap => SizeMap;
 
     private void OnDrawGizmos()
     {

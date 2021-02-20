@@ -72,6 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a3c65daea52364ca72f43ecbb0d719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followPlayer: {fileID: 4224971694319694462}
+  drawGizmoMap: {fileID: 4224971694319694456}
   AspectRatioCamera: {x: 16, y: 9}
 --- !u!1 &4224971695763506648
 GameObject:
