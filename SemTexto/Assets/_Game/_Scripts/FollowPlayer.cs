@@ -13,9 +13,14 @@ public class FollowPlayer : MonoBehaviour
 
     private int xRoom = default, 
                 yRoom = default;
-
+ 
     private int idRoomLast = default;
     private int idRoom = default;
+
+    [SerializeField]
+    private bool isSmooth = default;
+    [SerializeField]
+    private float smoothSpeed = 5f;
 
     private void Start()
     {
@@ -24,7 +29,10 @@ public class FollowPlayer : MonoBehaviour
 
     private void InitialSetup()
     {
-        idRoom = idRoomLast = GetIdRoom(); 
+        idRoom = idRoomLast = GetIdRoom();
+        UpdatePositionRoom();
+        UpdateNextPositionCamera();
+        transform.position = nextPosition;
     }
 
     private int GetIdRoom()
@@ -37,9 +45,16 @@ public class FollowPlayer : MonoBehaviour
         nextPosition = Vector2.zero;
 
         UpdatePositionRoom();
-        UpdatePositionCamera();
+        UpdateNextPositionCamera();
 
-        transform.position = new Vector2(nextPosition.x, nextPosition.y);
+        if (isSmooth)
+        {
+            transform.position = Vector3.Lerp(transform.position, nextPosition, smoothSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = nextPosition;
+        }
 
         idRoomLast = idRoom;
         idRoom = GetIdRoom();
@@ -51,7 +66,7 @@ public class FollowPlayer : MonoBehaviour
 
     }
 
-    private void UpdatePositionCamera()
+    private void UpdateNextPositionCamera()
     {
         nextPosition.x = xRoom * AspectRatioCamera.x;
         nextPosition.y = yRoom * AspectRatioCamera.y;
