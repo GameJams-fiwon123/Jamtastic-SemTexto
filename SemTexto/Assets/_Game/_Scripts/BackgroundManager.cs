@@ -6,11 +6,11 @@ using UnityEngine.Animations;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public enum typeTime { Night, Morning }
+    public enum typeTime { Night, Morning, Evening }
     public typeTime currentTime = default;
 
     [SerializeField]
-    private Animator anim = default;
+    private Animator    anim = default;
 
     private int index = default;
 
