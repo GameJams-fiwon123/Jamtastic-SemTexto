@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private float jumpTimeCounter = default;
     public float JumpTime = default;
     private bool canJump = default;
-    private float inFloorRadius = 0.05f;
+    //private float inFloorRadius = 0.05f;
     private bool isJumping = default;
     private bool flipX = default;
     private bool isRunning = default;
@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
     {
         if (inFloor && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
-            Debug.Log("PUlar");
             canJump = true;
             jumpTimeCounter = JumpTime;
             //Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;

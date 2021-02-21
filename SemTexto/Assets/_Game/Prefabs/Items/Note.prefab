@@ -7,7 +7,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4751275815966764214}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ee4f0727b9922d42b8f923a0e349611, type: 3}
@@ -20,8 +20,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.1
-  MaxDistance: 5
+  MinDistance: 0.5
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -96,6 +96,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5276219285508596458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751275815966764214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142cf131309fc78488915e829431b881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentType: 0
+  Collider2d: {fileID: 8012825717450643417}
+  Anim: {fileID: 45077083080196772}
+  idRoomActivate: 
+  audioSource: {fileID: -7100553385250117320}
 --- !u!1001 &175143037938033099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,11 +202,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 40d70af90a42fb140a4b01aabccbdd16,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6212442402227963502, guid: 291a927a71ec48944a8b3431016076e6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 291a927a71ec48944a8b3431016076e6, type: 3}
 --- !u!1 &4751275815966764214 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4864406035172396413, guid: 291a927a71ec48944a8b3431016076e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 175143037938033099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &45077083080196772 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 202133066694288239, guid: 291a927a71ec48944a8b3431016076e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 175143037938033099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &8012825717450643417 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7880592512361920018, guid: 291a927a71ec48944a8b3431016076e6,
     type: 3}
   m_PrefabInstance: {fileID: 175143037938033099}
   m_PrefabAsset: {fileID: 0}

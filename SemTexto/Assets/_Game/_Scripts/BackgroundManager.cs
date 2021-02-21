@@ -10,7 +10,7 @@ public class BackgroundManager : MonoBehaviour
     public typeTime currentTime = default;
 
     [SerializeField]
-    private Animator anim;
+    private Animator anim = default;
 
     private int index = default;
 
