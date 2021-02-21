@@ -140,7 +140,7 @@ MonoBehaviour:
   Rb2D: {fileID: 6277913821022947913}
   anim: {fileID: 2306056317157809249}
   Speed: 8
-  JumpForce: 12
+  JumpForce: 600
   floorChecker: {fileID: 6868901870142325058}
   floorLayer:
     serializedVersion: 2
