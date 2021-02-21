@@ -15,6 +15,20 @@ public class BagManager : MonoBehaviour
         instance = this;
     }
 
+    public bool UseItem(Item.type typeItem)
+    {
+        for (int i = 1; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i) && transform.GetChild(i).GetComponent<Item>().currentType == typeItem)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
