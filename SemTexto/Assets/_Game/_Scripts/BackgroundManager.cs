@@ -1,17 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public enum typeTime { night, morning }
+    public enum typeTime { Night, Morning }
     public typeTime currentTime = default;
 
     [SerializeField]
-    private Sprite[] sprites = default;
-    [SerializeField]
-    private SpriteRenderer sprRenderer = default;
+    private Animator anim;
 
     private int index = default;
 
@@ -28,7 +27,6 @@ public class BackgroundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sprRenderer.sprite = sprites[0];
 
         MainCamera.instance.followPlayer.changeRoom += OnChangeRoom;
     }
@@ -42,14 +40,14 @@ public class BackgroundManager : MonoBehaviour
     public void Next(int nextRoom)
     {
         index++;
-        if (index >= sprites.Length)
+        if (index >= Enum.GetValues(typeof(typeTime)).Length)
         {
             index = 0;
         }
 
         currentTime = (typeTime)index;
 
-        sprRenderer.sprite = sprites[index];
+        anim.Play(currentTime.ToString());
 
         changedBackground?.Invoke(nextRoom);
     }
