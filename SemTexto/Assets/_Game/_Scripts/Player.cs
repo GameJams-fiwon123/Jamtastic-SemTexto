@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        axisMove = Vector2.zero;
+        //axisMove = Vector2.zero;
 
         GetJump();
 
@@ -51,6 +51,14 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (axisMove.y > 0f)
+        {
+            Rb2D.velocity = axisMove * Time.deltaTime;
+        } 
+        else
+        {
+            Rb2D.velocity = new Vector2(axisMove.x * Time.deltaTime, Rb2D.velocity.y);
+        }
 
         Move();
 
@@ -64,34 +72,42 @@ public class Player : MonoBehaviour
     {
         if (inFloor && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
+            Debug.Log("PUlar");
             canJump = true;
             jumpTimeCounter = JumpTime;
-            Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
+            //Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
             //SfxManager.Instance.PlaySfxPlayerLand();
+            axisMove.y = 1f;
+            axisMove.y *= JumpForce; //* Time.deltaTime;
         }
 
         if (canJump && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))
         {
             if (jumpTimeCounter > 0)
             {
-                Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
+                //Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
                 jumpTimeCounter -= Time.deltaTime;
+                axisMove.y = 1f;
+                axisMove.y *= JumpForce; //* Time.deltaTime;
             }
             else
             {
                 canJump = false;
+                axisMove.y = 0f;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space))
         {
             canJump = false;
+            axisMove.y = 0f;
         }
     }
 
     private void GetMove()
     {
         axisMove.x = Input.GetAxis("Horizontal");
+        axisMove.x *= Speed; // * Time.deltaTime;
     }
 
     private void SetAnimator()
@@ -103,7 +119,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        Rb2D.velocity = new Vector2(axisMove.x * Speed * Time.deltaTime, Rb2D.velocity.y);
+        // Rb2D.velocity = new Vector2(axisMove.x * Speed * Time.deltaTime, Rb2D.velocity.y);
 
         if (axisMove.x == 0)
         {
