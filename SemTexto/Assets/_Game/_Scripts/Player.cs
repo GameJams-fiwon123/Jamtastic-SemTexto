@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private float JumpForce = default;
 
     [SerializeField]
-    private Transform floorChecker = default;
+    private BoxCollider2D floorChecker = default;
     [SerializeField]
     private LayerMask floorLayer = default;
 
@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        axisMove = Vector2.zero;
+
         GetJump();
 
         GetMove();
@@ -55,23 +57,24 @@ public class Player : MonoBehaviour
         Jump();
 
         Flip();
+
     }
 
     private void GetJump()
     {
-        if (inFloor && (Input.GetKeyDown(KeyCode.UpArrow)))
+        if (inFloor && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
             canJump = true;
             jumpTimeCounter = JumpTime;
-            Rb2D.velocity = Vector2.up * JumpForce;
+            Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
             //SfxManager.Instance.PlaySfxPlayerLand();
         }
 
-        if (canJump && (Input.GetKey(KeyCode.UpArrow)))
+        if (canJump && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))
         {
             if (jumpTimeCounter > 0)
             {
-                Rb2D.velocity = Vector2.up * JumpForce;
+                Rb2D.velocity = Vector2.up * JumpForce * Time.deltaTime;
                 jumpTimeCounter -= Time.deltaTime;
             }
             else
@@ -80,7 +83,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space))
         {
             canJump = false;
         }
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour
 
     private void GetMove()
     {
-        axisMove.Set(Input.GetAxis("Horizontal"), 0f);
+        axisMove.x = Input.GetAxis("Horizontal");
     }
 
     private void SetAnimator()
@@ -100,7 +103,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        Rb2D.velocity = new Vector2(axisMove.x * Speed, Rb2D.velocity.y);
+        Rb2D.velocity = new Vector2(axisMove.x * Speed * Time.deltaTime, Rb2D.velocity.y);
 
         if (axisMove.x == 0)
         {
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        inFloor = Physics2D.OverlapCircle(floorChecker.position, inFloorRadius, floorLayer);
+        inFloor = Physics2D.BoxCast(floorChecker.transform.position, floorChecker.size, 0f, Vector2.down, 0.05f, floorLayer, 0f, 0f);
 
         if (Rb2D.velocity.y < 0)
         {
