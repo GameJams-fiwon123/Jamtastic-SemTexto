@@ -20,6 +20,9 @@ public class Item : MonoBehaviour
         {
             BagManager.instance.AddItem(transform);
             Collider2d.enabled = false;
+            DetectPlayer();
         }
     }
+
+    public virtual void DetectPlayer() { }
 }

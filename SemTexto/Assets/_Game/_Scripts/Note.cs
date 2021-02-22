@@ -38,4 +38,9 @@ public class Note : Item
     {
         MainCamera.instance.followPlayer.changeRoom -= OnChangeRoom;
     }
+
+    public override void DetectPlayer()
+    {
+        audioSource.spatialBlend = 0f;
+    }
 }

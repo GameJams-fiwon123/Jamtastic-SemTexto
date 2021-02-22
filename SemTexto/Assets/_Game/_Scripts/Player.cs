@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private LayerMask floorLayer = default;
 
 
-    private float greaterGravity = 6, lessGravity = 1; //Less 2
+    private float greaterGravity = 6, lessGravity = 5; //Less 2
     private Vector2 axisMove = default;
     private bool inFloor = default;
     private float jumpTimeCounter = default;
