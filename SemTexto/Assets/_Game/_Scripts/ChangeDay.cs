@@ -19,7 +19,7 @@ public class ChangeDay : MonoBehaviour
 
     private void OnChangeRoom(int idRoom)
     {
-        if (!isUnlocked && idRoom == idRoomUnlock && BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Morning)
+        if (!isUnlocked && idRoom == idRoomUnlock && BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo7)
         {
             unlockItem.SetActive(true);
             isUnlocked = true;

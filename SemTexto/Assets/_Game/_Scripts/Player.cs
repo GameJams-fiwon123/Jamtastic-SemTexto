@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
     private bool isJumping = default;
     private bool flipX = default;
     private bool isRunning = default;
+    private bool canStun = default;
+    private bool isStunning = default;
+    public float stunDuration = 3f;
 
     public static Player instance;
 
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //axisMove = Vector2.zero;
+        axisMove = Vector2.zero;
 
         GetJump();
 
@@ -53,6 +57,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (isStunning)
+        {
+            return;
+        }
+
         if (axisMove.y > 0f)
         {
             Rb2D.velocity = axisMove * Time.deltaTime;
@@ -121,6 +131,7 @@ public class Player : MonoBehaviour
         anim.SetBool("InFloor", inFloor);
         anim.SetBool("IsRunning", isRunning);
         anim.SetBool("IsJumping", isJumping);
+        anim.SetBool("IsStunning", isStunning);
     }
 
     private void Move()
@@ -151,6 +162,10 @@ public class Player : MonoBehaviour
         {
             Rb2D.gravityScale = lessGravity;
             isJumping = false;
+            if (Rb2D.velocity.y < -22f)
+            {
+                canStun = true;
+            }
         }
         else if (Rb2D.velocity.y > 0 && !Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -162,6 +177,21 @@ public class Player : MonoBehaviour
             Rb2D.gravityScale = 1;
             isJumping = false;
         }
+
+        if (canStun && inFloor)
+        {
+            StartCoroutine(Stunning());
+        }
+    }
+
+    private IEnumerator Stunning()
+    {
+        isStunning = true;
+        canStun = false;
+        SetAnimator();
+        MainCamera.instance.animCamera.Play("ShakeStun");
+        yield return new WaitForSeconds(stunDuration);
+        isStunning = false;
     }
 
     private void Flip()

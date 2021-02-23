@@ -6,7 +6,8 @@ public class MainCamera : MonoBehaviour
 { 
     public FollowPlayer followPlayer = default;
     public DrawGizmoMap drawGizmoMap = default;
-    public FadeManager fade;
+    public FadeManager fade = default;
+    public Animator animCamera = default;
 
     [SerializeField]
     private Vector2 AspectRatioCamera = default;
