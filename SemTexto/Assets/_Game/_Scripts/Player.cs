@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 
     public static Player instance;
 
+    private bool startMove = default;
+
     private void Awake()
     {
         instance = this;
@@ -78,6 +80,11 @@ public class Player : MonoBehaviour
             //SfxManager.Instance.PlaySfxPlayerLand();
             axisMove.y = 1f;
             axisMove.y *= JumpForce; //* Time.deltaTime;
+            if (!startMove)
+            {
+                MainCamera.instance.fade.FadeOut();
+                startMove = true;
+            }
         }
 
         if (canJump && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))
@@ -126,6 +133,12 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (!startMove)
+            {
+                MainCamera.instance.fade.FadeOut();
+                startMove = true;
+            }
+
             isRunning = true;
         }
     }

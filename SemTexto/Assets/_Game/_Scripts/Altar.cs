@@ -8,11 +8,16 @@ public class Altar : MonoBehaviour
     [SerializeField]
     private Collider2D collider2d = default;
     [SerializeField]
-    private GameObject[] notes = default;
+    private Transform[] notePositions = default;
     private int index = default;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!GameManager.instance.isStart)
+        {
+            return;
+        }
+
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(VerifyBag());
@@ -21,15 +26,19 @@ public class Altar : MonoBehaviour
 
     private IEnumerator VerifyBag()
     {
-        while (BagManager.instance.UseItem(Item.type.Note))
+        Item item;
+        while (item = BagManager.instance.GetItem(Item.type.Note))
         {
-            notes[index].SetActive(true);
+            item.GetComponent<Note>().ChangeSpatialBlend(1f);
+            item.GetComponent<Note>().DiscoverRooms();
+            item.transform.parent = notePositions[index].transform;
+            item.transform.position = notePositions[index].position;
             index++;
 
             yield return null;
         }
 
-        if (index >= notes.Length)
+        if (index >= notePositions.Length)
         {
             collider2d.enabled = false;
             GameManager.instance.YouWin();
