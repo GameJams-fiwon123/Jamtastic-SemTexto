@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
     {
         axisMove = Vector2.zero;
 
+        if (isStunning)
+        {
+            return;
+        }
+
         GetJump();
 
         GetMove();
@@ -57,11 +62,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (isStunning)
-        {
-            return;
-        }
 
         if (axisMove.y > 0f)
         {

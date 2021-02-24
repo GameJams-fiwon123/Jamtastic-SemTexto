@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public enum typeTime { Fundo7, Fundo1, Fundo2, Fundo4, Fundo5 }
+    public enum typeTime { Fundo7, Fundo1, Fundo2, Fundo3, Fundo4, Fundo5, Fundo6 }
     public typeTime currentTime = default;
 
     [SerializeField]
