@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
             bool usedItem = BagManager.instance.UseItem(typeItem);
             if (usedItem)
             {
+                SFXManager.instance.PlayOpenKey();
                 Destroy(gameObject);
             }
         }

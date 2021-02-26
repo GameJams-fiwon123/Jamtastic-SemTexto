@@ -13,8 +13,15 @@ public class LeverManager : MonoBehaviour
     private int nextIndex = default;
     private bool isCorrect = true;
 
+    private bool isFinish = false;
+
     public void activateLever(Lever lever)
     {
+        if (isFinish)
+        {
+            return;
+        }
+
         if (leversOrder[nextIndex] != lever){
             isCorrect = false;
         }
@@ -24,7 +31,11 @@ public class LeverManager : MonoBehaviour
         {
             nextIndex = 0;
             if (isCorrect)
+            {
+                SFXManager.instance.PlayCorrect();
                 Destroy(openObject);
+                isFinish = true;
+            }
             else
             {
                 StartCoroutine(DeactivateAllLevers());
@@ -42,5 +53,7 @@ public class LeverManager : MonoBehaviour
         {
             leversOrder[i].deactivate();
         }
+
+        SFXManager.instance.PlayWrong();
     }
 }

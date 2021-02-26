@@ -25,6 +25,7 @@ public class Lever : MonoBehaviour
 
     public void activate() 
     {
+        SFXManager.instance.PlayAlavanca();
         collider2d.enabled = false;
         newScale.x = -1;
         transform.localScale = newScale;

@@ -9,7 +9,7 @@ public class LeverTime : MonoBehaviour
     [SerializeField]
     private Collider2D collider2d = default;
 
-    private float waitTime = 20f;
+    private float waitTime = 28f;
 
     [SerializeField]
     private Transform collectableItem = default;
@@ -17,6 +17,8 @@ public class LeverTime : MonoBehaviour
     private Vector3 newScale = default;
 
     private bool isCollected = default;
+
+    Coroutine coroutine = default;
 
     private void Start()
     {
@@ -37,10 +39,14 @@ public class LeverTime : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isCollected)
+            return;
+
         if (collision.gameObject.tag == "Player")
         {
-            StopAllCoroutines();
-            StartCoroutine(DeactivateObject());
+            //StopAllCoroutines();
+            if (coroutine == null)
+                coroutine = StartCoroutine(DeactivateObject());
         }
     }
 
@@ -50,6 +56,7 @@ public class LeverTime : MonoBehaviour
         newScale = transform.localScale;
         newScale.x = -1;
         transform.localScale = newScale;
+        SFXManager.instance.PlayTimer();
 
         yield return new WaitForSeconds(waitTime);
 
@@ -59,5 +66,7 @@ public class LeverTime : MonoBehaviour
             newScale.x = 1;
             transform.localScale = newScale;
         }
+
+        coroutine = null;
     }
 }

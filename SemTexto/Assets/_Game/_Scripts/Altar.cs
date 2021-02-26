@@ -27,6 +27,7 @@ public class Altar : MonoBehaviour
     private IEnumerator VerifyBag()
     {
         Item item;
+        bool alreadyPlay = false;
         while (item = BagManager.instance.GetItem(Item.type.Note))
         {
             item.GetComponent<Note>().ChangeSpatialBlend(1f);
@@ -35,6 +36,11 @@ public class Altar : MonoBehaviour
             item.transform.position = notePositions[index].position;
             index++;
             GameManager.instance.CollectNote();
+            if (!alreadyPlay)
+            {
+                SFXManager.instance.PlayAltar();
+                alreadyPlay = true;
+            }
 
             yield return null;
         }

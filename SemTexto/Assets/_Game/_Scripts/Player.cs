@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
                 MainCamera.instance.fade.FadeOut();
                 startMove = true;
             }
+            SFXManager.instance.PlayJump();
         }
 
         if (canJump && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))
@@ -196,6 +197,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Stunning()
     {
+        SFXManager.instance.PlayQueda();
         isStunning = true;
         canStun = false;
         SetAnimator();

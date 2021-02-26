@@ -16,6 +16,7 @@ public class Box : MonoBehaviour
             bool usedItem = BagManager.instance.UseItem(typeItem);
             if (usedItem)
             {
+                SFXManager.instance.PlayHammer();
                 unlockItem.anim.enabled = true;
                 unlockItem.collider2d.enabled = true;
 
