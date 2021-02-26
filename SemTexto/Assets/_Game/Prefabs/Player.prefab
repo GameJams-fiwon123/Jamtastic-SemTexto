@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 6277913821022947913}
   - component: {fileID: 6277913821022947914}
   - component: {fileID: 2306056317157809249}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -173,6 +173,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   JumpTime: 0.25
+  stunDuration: 3
 --- !u!50 &6277913821022947913
 Rigidbody2D:
   serializedVersion: 4

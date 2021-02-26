@@ -43,6 +43,16 @@ public class BagManager : MonoBehaviour
         return null;
     }
 
+    public Item GetFirstItem()
+    {
+        if (transform.childCount > 1)
+        {
+             return transform.GetChild(1).GetComponent<Item>();
+        }
+
+        return null;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -57,6 +67,11 @@ public class BagManager : MonoBehaviour
                                                           transform.GetChild(i-1).position, 
                                                           smoothSpeed * Time.deltaTime);
         }
+    }
+
+    public bool HasItems()
+    {
+        return transform.childCount > 1;
     }
 
     public void AddItem(Transform item)

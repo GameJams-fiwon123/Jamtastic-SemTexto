@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     [SerializeField]
     private Rigidbody2D Rb2D = default;
     [SerializeField]
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 
     private float greaterGravity = 6, lessGravity = 5; //Less 2
     private Vector2 axisMove = default;
+    public bool isRight = default;
     private bool inFloor = default;
     private float jumpTimeCounter = default;
     public float JumpTime = default;
@@ -124,6 +126,14 @@ public class Player : MonoBehaviour
     {
         axisMove.x = Input.GetAxis("Horizontal");
         axisMove.x *= Speed; // * Time.deltaTime;
+        if (axisMove.x > 0)
+        {
+            isRight = true;
+        } 
+        else if (axisMove.x < 0)
+        {
+            isRight = false;
+        }
     }
 
     private void SetAnimator()

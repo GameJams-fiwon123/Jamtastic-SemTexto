@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8811b8775726d7b408e1f5c2b3349220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalPlayable: {fileID: 0}
+  isStart: 0
+  maxGhostSpawns: 0
+  currentGhostSpawns: 0

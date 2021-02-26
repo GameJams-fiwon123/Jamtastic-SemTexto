@@ -6,8 +6,17 @@ using UnityEngine.Playables;
 public class GameManager : MonoBehaviour
 {
     public PlayableDirector finalPlayable;
-    public static GameManager instance;
     public bool isStart = default;
+
+    [SerializeField]
+    private int maxGhostSpawns = 0;
+    [SerializeField]
+    private int currentGhostSpawns = 0;
+    [SerializeField]
+    [Range(0, 100)]
+    private int chanceSpawn = 10;
+
+    public static GameManager instance;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,6 +27,29 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isStart = true;
+    }
+
+    public void CollectNote()
+    {
+        maxGhostSpawns++;
+        chanceSpawn += 10;
+    }
+
+    public void SpawnGhost()
+    {
+        currentGhostSpawns++;
+    }
+
+    public void DespawnGhost()
+    {
+        currentGhostSpawns--;
+    }
+
+    public bool CanSpawnGhost()
+    {
+        return currentGhostSpawns < maxGhostSpawns &&
+               Random.Range(0, 100) < chanceSpawn &&
+               BagManager.instance.HasItems();
     }
 
     // Update is called once per frame
