@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool isRunning = default;
     private bool canStun = default;
     private bool isStunning = default;
+    private bool isSpawned = default;
     public float stunDuration = 3f;
 
     public static Player instance;
@@ -45,9 +46,26 @@ public class Player : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        Rb2D.gravityScale = 0f;
+        isSpawned = false;
+    }
+
+    public void Spawned()
+    {
+        Rb2D.gravityScale = 1f;
+        isSpawned = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!isSpawned)
+        {
+            return;
+        }
+
         axisMove = Vector2.zero;
 
         if (isStunning)
@@ -64,6 +82,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isSpawned)
+        {
+            return;
+        }
+
 
         if (axisMove.y > 0f)
         {
