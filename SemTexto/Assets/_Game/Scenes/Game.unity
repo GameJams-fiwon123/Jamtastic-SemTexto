@@ -15021,12 +15021,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &1330953092 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 4257087450960189542, guid: ac783baf0d35a4d439d91d896547262c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6277913821356557960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331696158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22993,7 +22987,7 @@ PrefabInstance:
     - target: {fileID: 4224971695763506468, guid: bf286aa26749f3746966945414d2e950,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4224971695763506651, guid: bf286aa26749f3746966945414d2e950,
         type: 3}
@@ -23305,21 +23299,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6277913821022947912, guid: ac783baf0d35a4d439d91d896547262c,
-        type: 3}
-      propertyPath: JumpForce
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277913821022947912, guid: ac783baf0d35a4d439d91d896547262c,
-        type: 3}
-      propertyPath: Speed
-      value: 325
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277913821022947912, guid: ac783baf0d35a4d439d91d896547262c,
-        type: 3}
-      propertyPath: floorChecker
-      value: 
-      objectReference: {fileID: 1330953092}
     - target: {fileID: 6277913821022947913, guid: ac783baf0d35a4d439d91d896547262c,
         type: 3}
       propertyPath: m_Constraints
@@ -23327,18 +23306,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6277913821022947914, guid: ac783baf0d35a4d439d91d896547262c,
         type: 3}
-      propertyPath: m_Size.x
-      value: 1
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 6277913821022947914, guid: ac783baf0d35a4d439d91d896547262c,
         type: 3}
-      propertyPath: m_Size.y
-      value: 1.2167336
-      objectReference: {fileID: 0}
-    - target: {fileID: 6277913821022947914, guid: ac783baf0d35a4d439d91d896547262c,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.008366764
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 6868901870142325058, guid: ac783baf0d35a4d439d91d896547262c,
         type: 3}

@@ -15,6 +15,9 @@ public class Note : Item
             yRoom = default,
             currentRoom = default;
 
+    private bool isFirstTimeCollect = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,14 +68,16 @@ public class Note : Item
         audioSource.volume = 0f;
     }
 
-    //private void OnDestroy()
-    //{
-    //    MainCamera.instance.followPlayer.changeRoom -= OnChangeRoom;
-    //}
 
     public override void DetectPlayer()
     {
         ChangeSpatialBlend(0f);
+
+        if (isFirstTimeCollect)
+        {
+            isFirstTimeCollect = false;
+            GameManager.instance.CollectNote();
+        }
 
     }
 

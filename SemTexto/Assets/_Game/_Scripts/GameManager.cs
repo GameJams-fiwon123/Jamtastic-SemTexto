@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     private int chanceSpawn = 10;
+    [SerializeField]
+    private float SpeedGhost = 225f;
+    public float speedGhost => SpeedGhost;
 
     public static GameManager instance;
 
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         maxGhostSpawns++;
         chanceSpawn += 10;
+        SpeedGhost += 50f;
     }
 
     public void SpawnGhost()

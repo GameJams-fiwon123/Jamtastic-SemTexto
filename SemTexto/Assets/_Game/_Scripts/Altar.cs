@@ -35,7 +35,7 @@ public class Altar : MonoBehaviour
             item.transform.parent = notePositions[index].transform;
             item.transform.position = notePositions[index].position;
             index++;
-            GameManager.instance.CollectNote();
+
             if (!alreadyPlay)
             {
                 SFXManager.instance.PlayAltar();

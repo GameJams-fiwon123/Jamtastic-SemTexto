@@ -166,14 +166,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rb2D: {fileID: 6277913821022947913}
   anim: {fileID: 2306056317157809249}
-  Speed: 8
+  Speed: 325
   JumpForce: 600
-  floorChecker: {fileID: 6868901870142325058}
+  floorChecker: {fileID: 4257087450960189542}
   floorLayer:
     serializedVersion: 2
     m_Bits: 256
+  isRight: 0
   JumpTime: 0.25
-  stunDuration: 3
 --- !u!50 &6277913821022947913
 Rigidbody2D:
   serializedVersion: 4
@@ -208,7 +208,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.008366764}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,7 +219,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1.2167336}
   m_EdgeRadius: 0
 --- !u!95 &2306056317157809249
 Animator:

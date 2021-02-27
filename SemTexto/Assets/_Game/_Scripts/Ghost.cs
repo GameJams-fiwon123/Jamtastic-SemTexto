@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
+    public enum states { FollowPlayer, Stunned, PreDash, Dash, FollowRoom }
+    public states currentState = default;
+
     [SerializeField]
     private Rigidbody2D Rb2D = default;
     [SerializeField]
     private Collider2D collider = default;
-    [SerializeField]
-    private float Speed = default;
+    //[SerializeField]
+    //private float Speed = default;
 
     private Vector2 axisMove = default;
     private bool flipX = default;
@@ -18,31 +21,130 @@ public class Ghost : MonoBehaviour
     private Item item = default;
     private Transform roomTransform = default;
     private float distanceRoom = 9999999;
+    private float distancePlayer = 999999;
+
+    private float waitTime = 0f;
+
+    private float totalDash = 3f;
+    private float currentDash = 0f;
+
+    private void Start()
+    {
+        MainCamera.instance.followPlayer.changeRoom += OnChangeRoom;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        axisMove = Vector2.zero;
-
-        GetMove();
-
         if (!BagManager.instance.HasItems() && item == null)
         {
             GameManager.instance.DespawnGhost();
             Destroy(gameObject);
         }
 
-        GetDistanceRoom();
-        if (distanceRoom < 1f)
+        switch (currentState)
         {
-            item.transform.parent = roomTransform;
-            item.transform.position = roomTransform.position;
-            item.collider2d.enabled = true;
-            item = null;
-            roomTransform = null;
-            Destroy(gameObject);
-            GameManager.instance.DespawnGhost();
+            case states.FollowPlayer:
+                axisMove = Vector2.zero;
+                GetMove();
+                GetDistancePlayer();
+                if (distancePlayer < 2.5f)
+                { 
+                    waitTime = 0.5f;
+                    currentState = states.PreDash;
+                }
+                break;
+            case states.PreDash:
+                axisMove = Vector2.zero;
+                if (waitTime > 0f)
+                {
+                    waitTime -= Time.deltaTime;
+                }
+                else
+                {
+                    axisMove = Player.instance.transform.position - transform.position;
+                    axisMove = axisMove.normalized;
+                    if (Player.instance.isRight)
+                    {
+                        axisMove.x += 0.1f;
+                    }
+                    else
+                    {
+                        axisMove.x -= 0.1f;
+                    }
+
+                    currentDash++;
+                    currentState = states.Dash;
+                    waitTime = 0.5f;
+                }
+                break;
+            case states.Dash:
+                if (waitTime > 0f)
+                {
+                    waitTime -= Time.deltaTime;
+                }
+                else
+                {
+                    currentState = states.Stunned;
+                    waitTime = 1f;
+                }
+                break;
+            case states.Stunned:
+                axisMove = Vector2.zero;
+                if (waitTime > 0f)
+                {
+                    waitTime -= Time.deltaTime;
+                }
+                else
+                {
+                    if (currentDash == totalDash)
+                    {
+                        GameManager.instance.DespawnGhost();
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        currentState = states.FollowPlayer;
+                    }
+                }
+                break;
+            case states.FollowRoom:
+                axisMove = Vector2.zero;
+                GetMove();
+                GetDistanceRoom();
+                if (distanceRoom < 1f)
+                {
+                    item.transform.parent = roomTransform;
+                    item.transform.position = roomTransform.position;
+                    item.collider2d.enabled = true;
+                    item = null;
+                    roomTransform = null;
+                    GameManager.instance.DespawnGhost();
+                    Destroy(gameObject);
+                }
+                break;
         }
+
+
+
+    }
+
+    private void GetDistancePlayer()
+    {
+        distancePlayer = Vector2.Distance(Player.instance.transform.position, transform.position);
+    }
+
+    private void OnChangeRoom(int nextRoom)
+    {
+        if (currentState == states.Stunned)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        MainCamera.instance.followPlayer.changeRoom -= OnChangeRoom;
     }
 
     private void GetDistanceRoom()
@@ -65,14 +167,18 @@ public class Ghost : MonoBehaviour
         }
 
         axisMove = axisMove.normalized;
-        axisMove *= Speed; // * Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-
-        Rb2D.velocity = axisMove * Time.deltaTime;
-
+        if (currentState != states.Dash)
+        {
+            Rb2D.velocity = axisMove * GameManager.instance.speedGhost * Time.deltaTime;
+        }
+        else
+        {
+            Rb2D.velocity = axisMove * (GameManager.instance.speedGhost * 2) * Time.deltaTime;
+        }
         Flip();
 
     }
@@ -97,6 +203,7 @@ public class Ghost : MonoBehaviour
             item.transform.position = transform.GetChild(0).position;
 
             roomTransform = RoomsManager.instance.rooms[UnityEngine.Random.Range(0, RoomsManager.instance.rooms.Length)];
+            currentState = states.FollowRoom;
 
             collider.enabled = false;
         }
