@@ -32,6 +32,7 @@ public class LeverManager : MonoBehaviour
             nextIndex = 0;
             if (isCorrect)
             {
+                MainCamera.instance.PlayDoor();
                 SFXManager.instance.PlayCorrect();
                 Destroy(openObject);
                 isFinish = true;

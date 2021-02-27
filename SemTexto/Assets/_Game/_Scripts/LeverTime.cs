@@ -27,13 +27,14 @@ public class LeverTime : MonoBehaviour
 
     private void Update()
     {
-        if (collectableItem && collectableItem.parent == BagManager.instance.transform)
+        if (!isCollected && collectableItem && collectableItem.parent == BagManager.instance.transform)
         {
             collider2d.enabled = false;
             newScale.x = -1;
             transform.localScale = newScale;
             openObject.SetActive(false);
             isCollected = true;
+            SFXManager.instance.Stop();
         }
     }
 
@@ -57,6 +58,7 @@ public class LeverTime : MonoBehaviour
         newScale.x = -1;
         transform.localScale = newScale;
         SFXManager.instance.PlayTimer();
+        MainCamera.instance.PlayDoor();
 
         yield return new WaitForSeconds(waitTime);
 

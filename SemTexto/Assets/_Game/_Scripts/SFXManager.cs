@@ -39,6 +39,11 @@ public class SFXManager : MonoBehaviour
         audioSource.PlayOneShot(alavancasClips[Random.Range(0, alavancasClips.Length)]);
     }
 
+    internal void Stop()
+    {
+        audioSource.Stop();
+    }
+
     public void PlayAltar()
     {
         audioSource.PlayOneShot(altaresClips[Random.Range(0, altaresClips.Length)]);
@@ -71,7 +76,7 @@ public class SFXManager : MonoBehaviour
 
     public void PlayJump()
     {
-        audioSource.PlayOneShot(jumpClip);
+        audioSource.PlayOneShot(jumpClip, 0.6f);
     }
 
     public void PlayQueda()
@@ -81,6 +86,8 @@ public class SFXManager : MonoBehaviour
 
     public void PlayTimer()
     {
-        audioSource.PlayOneShot(timerClip);
+        audioSource.clip = timerClip;
+        audioSource.Play();
+        //audioSource.PlayOneShot(timerClip);
     }
 }

@@ -14,6 +14,7 @@ public class BlockWall : MonoBehaviour
             bool usedItem = BagManager.instance.UseItem(typeItem);
             if (usedItem)
             {
+                MainCamera.instance.PlayExplosion();
                 Destroy(gameObject);
             }
         }

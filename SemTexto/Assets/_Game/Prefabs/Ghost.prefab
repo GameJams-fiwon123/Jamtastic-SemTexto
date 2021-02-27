@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rb2D: {fileID: 6336112317085498340}
+  collider: {fileID: 3860749753327420418}
   Speed: 150
 --- !u!61 &3860749753327420418
 BoxCollider2D:

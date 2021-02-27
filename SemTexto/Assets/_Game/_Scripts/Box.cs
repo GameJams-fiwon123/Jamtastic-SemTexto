@@ -20,6 +20,7 @@ public class Box : MonoBehaviour
                 unlockItem.anim.enabled = true;
                 unlockItem.collider2d.enabled = true;
 
+                MainCamera.instance.PlayBox();
                 Destroy(gameObject);
             }
         }

@@ -20,4 +20,24 @@ public class MainCamera : MonoBehaviour
     {
         instance = this;
     }
+
+    public void PlayStun()
+    {
+        animCamera.Play("ShakeStun");
+    }
+
+    public void PlayExplosion()
+    {
+        animCamera.Play("ShakeExplosion");
+    }
+
+    public void PlayBox()
+    {
+        animCamera.Play("ShakeBox");
+    }
+
+    public void PlayDoor()
+    {
+        animCamera.Play("ShakeDoor");
+    }
 }

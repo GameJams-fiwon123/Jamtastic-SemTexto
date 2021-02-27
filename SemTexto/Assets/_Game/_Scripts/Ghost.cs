@@ -7,8 +7,8 @@ public class Ghost : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D Rb2D = default;
-    //[SerializeField]
-    //private Animator anim = default;
+    [SerializeField]
+    private Collider2D collider = default;
     [SerializeField]
     private float Speed = default;
 
@@ -97,6 +97,8 @@ public class Ghost : MonoBehaviour
             item.transform.position = transform.GetChild(0).position;
 
             roomTransform = RoomsManager.instance.rooms[UnityEngine.Random.Range(0, RoomsManager.instance.rooms.Length)];
+
+            collider.enabled = false;
         }
     }
 }

@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private bool canStun = default;
     private bool isStunning = default;
     private bool isSpawned = default;
-    public float stunDuration = 3f;
+    private float stunDuration = 2f;
 
     public static Player instance;
 
@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
         isStunning = true;
         canStun = false;
         SetAnimator();
-        MainCamera.instance.animCamera.Play("ShakeStun");
+        MainCamera.instance.PlayStun();
         yield return new WaitForSeconds(stunDuration);
         isStunning = false;
     }
