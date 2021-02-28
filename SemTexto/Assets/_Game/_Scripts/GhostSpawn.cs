@@ -32,8 +32,9 @@ public class GhostSpawn : MonoBehaviour
 
     private bool CanSpawn()
     {
-        return BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo7 ||
-               BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo5 ||
-               BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo6;
+        //return BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo7 ||
+        //       BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo5 ||
+        //       BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo6;
+        return BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo5;
     }
 }

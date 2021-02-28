@@ -138,6 +138,7 @@ public class Ghost : MonoBehaviour
     {
         if (currentState == states.Stunned)
         {
+            GameManager.instance.DespawnGhost();
             Destroy(gameObject);
         }
     }

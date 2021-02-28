@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: dfe6254949e7e5646a6475b366c8a702
+guid: 6639178a17aad5e4d9a11e10b2ff9291
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -6286161758860839277
-    second: BlackGhost_0
-  - first:
-      213: -7287888138597210202
-    second: BlackGhost_1
-  - first:
-      213: 6054257467181888036
-    second: BlackGhost_2
-  - first:
-      213: -1592941684449890397
-    second: BlackGhost_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -44,7 +32,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
+    aniso: 1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -52,12 +40,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 115
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,95 +108,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: BlackGhost_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39674729f2113c8a0800000000000000
-      internalID: -6286161758860839277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BlackGhost_1
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a76120d9583cda90800000000000000
-      internalID: -7287888138597210202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BlackGhost_2
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 422f12ee61b050450800000000000000
-      internalID: 6054257467181888036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BlackGhost_3
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3afa37e4afbb4e9e0800000000000000
-      internalID: -1592941684449890397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1a2b342f0f42f1b49b4a5bef785fd8b2
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

@@ -45,5 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalPlayable: {fileID: 0}
   isStart: 0
-  maxGhostSpawns: 0
+  maxGhostSpawns: 1
   currentGhostSpawns: 0
+  chanceSpawn: 10
+  SpeedGhost: 225

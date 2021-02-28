@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         maxGhostSpawns++;
         chanceSpawn += 10;
-        SpeedGhost += 50f;
+        //SpeedGhost += 50f;
     }
 
     public void SpawnGhost()
