@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private float SpeedGhost = 225f;
     public float speedGhost => SpeedGhost;
 
+    private int puzzleResolved = default;
+
     public static GameManager instance;
 
     // Start is called before the first frame update
@@ -34,9 +36,24 @@ public class GameManager : MonoBehaviour
 
     public void CollectNote()
     {
-        maxGhostSpawns++;
-        chanceSpawn += 10;
-        //SpeedGhost += 50f;
+        puzzleResolved++;
+
+        switch (puzzleResolved)
+        {
+            case 1:
+                maxGhostSpawns = 1;
+                chanceSpawn = 30;
+                break;
+            case 2:
+                chanceSpawn = 70;
+                maxGhostSpawns = 2;
+                break;
+            case 3:
+                chanceSpawn = 100;
+                maxGhostSpawns = 3;
+                break;
+        }
+
     }
 
     public void SpawnGhost()
@@ -49,11 +66,50 @@ public class GameManager : MonoBehaviour
         currentGhostSpawns--;
     }
 
-    public bool CanSpawnGhost()
+    public int CanSpawnGhost()
     {
-        return currentGhostSpawns < maxGhostSpawns &&
+        int spawnGhost = default;
+
+        if (currentGhostSpawns < maxGhostSpawns &&
                Random.Range(0, 100) < chanceSpawn &&
-               BagManager.instance.HasItems();
+               BagManager.instance.HasItems())
+        {
+            int randNumber = Random.Range(0, 100);
+            switch (maxGhostSpawns)
+            {
+                case 1:
+                    spawnGhost = 1;
+                    break;
+                case 2:
+                    if (randNumber < 50)
+                    {
+                        spawnGhost = 1;
+                    } else
+                    {
+                        spawnGhost = 2;
+                    }
+                    break;
+                case 3:
+                    if (randNumber < 40)
+                    {
+                        spawnGhost = 1;
+                    }
+                    else if (randNumber < 80)
+                    {
+                        spawnGhost = 2;
+                    } 
+                    else 
+                    {
+                        spawnGhost = 3;
+                    }
+                    break;
+            }
+        }
+
+        spawnGhost = Mathf.Clamp(spawnGhost, 0, maxGhostSpawns - currentGhostSpawns);
+
+        return spawnGhost;
+
     }
 
     // Update is called once per frame

@@ -13,19 +13,23 @@ public class GhostSpawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (prefabGhost != null && CanSpawn() && GameManager.instance.CanSpawnGhost() )
+        int ghostsQuantity = GameManager.instance.CanSpawnGhost();
+        if (prefabGhost != null && CanSpawn() && ghostsQuantity > 0 )
         {
-            if (Player.instance.isRight)
+            for (int i = 0; i < ghostsQuantity; i++)
             {
-                Transform t = spawnTransformsRight[Random.Range(0, spawnTransformsRight.Length)];
-                Instantiate(prefabGhost, t.position, t.rotation);
-                GameManager.instance.SpawnGhost();
-            } 
-            else
-            {
-                Transform t = spawnTransformsLeft[Random.Range(0, spawnTransformsRight.Length)];
-                Instantiate(prefabGhost, t.position, t.rotation);
-                GameManager.instance.SpawnGhost();
+                if (Player.instance.isRight)
+                {
+                    Transform t = spawnTransformsRight[Random.Range(0, spawnTransformsRight.Length)];
+                    Instantiate(prefabGhost, t.position, t.rotation);
+                    GameManager.instance.SpawnGhost();
+                }
+                else
+                {
+                    Transform t = spawnTransformsLeft[Random.Range(0, spawnTransformsRight.Length)];
+                    Instantiate(prefabGhost, t.position, t.rotation);
+                    GameManager.instance.SpawnGhost();
+                }
             }
         }
     }

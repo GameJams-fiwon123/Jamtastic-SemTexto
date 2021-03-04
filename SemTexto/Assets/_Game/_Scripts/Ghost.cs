@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
-    public enum states { FollowPlayer, Stunned, PreDash, Dash, FollowRoom }
+    public enum states { Appear, FollowPlayer, Stunned, PreDash, Dash, FollowRoom, Vanish }
     public states currentState = default;
 
     [SerializeField]
     private Rigidbody2D Rb2D = default;
     [SerializeField]
     private Collider2D collider = default;
-    //[SerializeField]
-    //private float Speed = default;
+    [SerializeField]
+    private SpriteRenderer sprRenderer = default;
+    private Color currentColor = default;
 
     private Vector2 axisMove = default;
     private bool flipX = default;
@@ -31,6 +32,8 @@ public class Ghost : MonoBehaviour
     private void Start()
     {
         MainCamera.instance.followPlayer.changeRoom += OnChangeRoom;
+        currentColor = sprRenderer.color;
+        currentColor.a = 0f;
     }
 
     // Update is called once per frame
@@ -38,17 +41,25 @@ public class Ghost : MonoBehaviour
     {
         if (!BagManager.instance.HasItems() && item == null)
         {
-            GameManager.instance.DespawnGhost();
-            Destroy(gameObject);
+            currentState = states.Vanish;
         }
 
         switch (currentState)
         {
+            case states.Appear:
+                axisMove = Vector2.zero;
+                currentColor.a = Mathf.Clamp(currentColor.a + 1 * Time.deltaTime, 0f, 1f);
+                sprRenderer.color = currentColor;
+                if(sprRenderer.color.a == 1f)
+                {
+                    currentState = states.FollowPlayer;
+                }
+                break;
             case states.FollowPlayer:
                 axisMove = Vector2.zero;
                 GetMove();
                 GetDistancePlayer();
-                if (distancePlayer < 2.5f)
+                if (distancePlayer < 5f)
                 { 
                     waitTime = 0.5f;
                     currentState = states.PreDash;
@@ -90,25 +101,34 @@ public class Ghost : MonoBehaviour
                 }
                 break;
             case states.Stunned:
+                collider.enabled = false;
                 axisMove = Vector2.zero;
                 if (waitTime > 0f)
                 {
+                    currentColor.a = 0.5f;
+                    sprRenderer.color = currentColor;
                     waitTime -= Time.deltaTime;
                 }
                 else
                 {
+                    currentColor.a = 1f;
+                    sprRenderer.color = currentColor;
+
                     if (currentDash == totalDash)
                     {
-                        GameManager.instance.DespawnGhost();
-                        Destroy(gameObject);
+                        currentState = states.Vanish;
                     }
                     else
                     {
+                        collider.enabled = true;
                         currentState = states.FollowPlayer;
                     }
                 }
                 break;
             case states.FollowRoom:
+                currentColor.a = 1f;
+                sprRenderer.color = currentColor;
+
                 axisMove = Vector2.zero;
                 GetMove();
                 GetDistanceRoom();
@@ -124,6 +144,16 @@ public class Ghost : MonoBehaviour
                     }
                     item = null;
                     roomTransform = null;
+                    currentState = states.Vanish;
+                }
+                break;
+            case states.Vanish:
+                collider.enabled = false;
+                axisMove = Vector2.zero;
+                currentColor.a = Mathf.Clamp(currentColor.a - 1 * Time.deltaTime, 0f, 1f);
+                sprRenderer.color = currentColor;
+                if (sprRenderer.color.a == 0f)
+                {
                     GameManager.instance.DespawnGhost();
                     Destroy(gameObject);
                 }

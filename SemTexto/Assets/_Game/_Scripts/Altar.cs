@@ -31,7 +31,7 @@ public class Altar : MonoBehaviour
         while (item = BagManager.instance.GetItem(Item.type.Note))
         {
             Note bagNote = item.GetComponent<Note>();
-            for (int i = index; i < notes.Length; i++)
+            for (int i = 0; i < notes.Length; i++)
             {
                 if (bagNote.currentAudio.clip == notes[i].currentAudio.clip)
                 {

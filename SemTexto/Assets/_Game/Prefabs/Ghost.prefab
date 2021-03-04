@@ -132,6 +132,7 @@ MonoBehaviour:
   currentState: 0
   Rb2D: {fileID: 6336112317085498340}
   collider: {fileID: 3860749753327420418}
+  sprRenderer: {fileID: 8439989951951005101}
 --- !u!61 &3860749753327420418
 BoxCollider2D:
   m_ObjectHideFlags: 0
