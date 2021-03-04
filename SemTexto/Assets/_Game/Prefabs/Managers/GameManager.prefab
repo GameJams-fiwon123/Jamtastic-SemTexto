@@ -48,4 +48,4 @@ MonoBehaviour:
   maxGhostSpawns: 1
   currentGhostSpawns: 0
   chanceSpawn: 10
-  SpeedGhost: 225
+  SpeedGhost: 400

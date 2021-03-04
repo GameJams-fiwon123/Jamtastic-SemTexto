@@ -8,7 +8,7 @@ public class Altar : MonoBehaviour
     [SerializeField]
     private Collider2D collider2d = default;
     [SerializeField]
-    private Transform[] notePositions = default;
+    private Note[] notes = default;
     private int index = default;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,11 +30,21 @@ public class Altar : MonoBehaviour
         bool alreadyPlay = false;
         while (item = BagManager.instance.GetItem(Item.type.Note))
         {
-            item.GetComponent<Note>().ChangeSpatialBlend(1f);
-            item.GetComponent<Note>().DiscoverRooms();
-            item.transform.parent = notePositions[index].transform;
-            item.transform.position = notePositions[index].position;
-            index++;
+            Note bagNote = item.GetComponent<Note>();
+            for (int i = index; i < notes.Length; i++)
+            {
+                if (bagNote.currentAudio.clip == notes[i].currentAudio.clip)
+                {
+                    bagNote.transform.parent = notes[i].transform.parent;
+                    bagNote.ChangeSpatialBlend(1f);
+                    bagNote.DiscoverRooms();
+                    bagNote.transform.localPosition = Vector3.zero;
+                    Destroy(notes[i].gameObject);
+                    notes[i] = bagNote;
+                    index++;
+                    break;
+                }
+            }
 
             if (!alreadyPlay)
             {
@@ -45,7 +55,7 @@ public class Altar : MonoBehaviour
             yield return null;
         }
 
-        if (index >= notePositions.Length)
+        if (index >= notes.Length)
         {
             collider2d.enabled = false;
             GameManager.instance.YouWin();

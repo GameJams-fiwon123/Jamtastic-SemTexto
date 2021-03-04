@@ -115,11 +115,11 @@ public class Player : MonoBehaviour
             //SfxManager.Instance.PlaySfxPlayerLand();
             axisMove.y = 1f;
             axisMove.y *= JumpForce; //* Time.deltaTime;
-            if (!startMove)
-            {
-                MainCamera.instance.fade.FadeOut();
-                startMove = true;
-            }
+            //if (!startMove)
+            //{
+            //    MainCamera.instance.fade.FadeOut();
+            //    startMove = true;
+            //}
             SFXManager.instance.PlayJump();
         }
 
@@ -178,11 +178,11 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (!startMove)
-            {
-                MainCamera.instance.fade.FadeOut();
-                startMove = true;
-            }
+            //if (!startMove)
+            //{
+            //    MainCamera.instance.fade.FadeOut();
+            //    startMove = true;
+            //}
 
             isRunning = true;
         }

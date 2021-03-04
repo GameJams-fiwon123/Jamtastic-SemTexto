@@ -10,6 +10,7 @@ public class Note : Item
     private int[] idRoomNeighboor = default;
     [SerializeField]
     private AudioSource audioSource = default;
+    public AudioSource currentAudio => audioSource;
 
     private int xRoom = default,
             yRoom = default,

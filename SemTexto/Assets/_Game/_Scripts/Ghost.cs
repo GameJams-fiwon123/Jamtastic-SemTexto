@@ -117,6 +117,11 @@ public class Ghost : MonoBehaviour
                     item.transform.parent = roomTransform;
                     item.transform.position = roomTransform.position;
                     item.collider2d.enabled = true;
+                    if (item.currentType == Item.type.Note)
+                    {
+                        item.GetComponent<Note>().ChangeSpatialBlend(1f);
+                        item.GetComponent<Note>().DiscoverRooms();
+                    }
                     item = null;
                     roomTransform = null;
                     GameManager.instance.DespawnGhost();
