@@ -67,7 +67,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6277913821022947893}
   - component: {fileID: 6277913821022947892}
-  - component: {fileID: 6277913821022947894}
   - component: {fileID: 6277913821022947912}
   - component: {fileID: 6277913821022947913}
   - component: {fileID: 6277913821022947914}
@@ -144,14 +143,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!81 &6277913821022947894
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6277913821022947891}
-  m_Enabled: 1
 --- !u!114 &6277913821022947912
 MonoBehaviour:
   m_ObjectHideFlags: 0

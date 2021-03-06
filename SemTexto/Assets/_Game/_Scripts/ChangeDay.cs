@@ -35,6 +35,7 @@ public class ChangeDay : MonoBehaviour
         if (idRoom == idRoomUnlock && BackgroundManager.instance.currentTime == BackgroundManager.typeTime.Fundo7)
         {
             particlMoon.Play();
+            SFXManager.instance.PlayRaioLunar();
         } else
         {
             particlMoon.Stop();
@@ -60,6 +61,7 @@ public class ChangeDay : MonoBehaviour
         isUnlocked = true;
         particlDestroy.Stop();
         particlExplosion.Play();
+        SFXManager.instance.PlayEstalactiteExplosion();
         estalactiteSpr.enabled = false;
     }
 }

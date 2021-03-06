@@ -26,6 +26,10 @@ public class SFXManager : MonoBehaviour
     private AudioClip quedaClip;
     [SerializeField]
     private AudioClip timerClip;
+    [SerializeField]
+    private AudioClip estalactiteExplosionClip;
+    [SerializeField]
+    private AudioClip raioLunarClip;
 
     public static SFXManager instance;
 
@@ -89,5 +93,15 @@ public class SFXManager : MonoBehaviour
         audioSource.clip = timerClip;
         audioSource.Play();
         //audioSource.PlayOneShot(timerClip);
+    }
+
+    public void PlayEstalactiteExplosion()
+    {
+        audioSource.PlayOneShot(estalactiteExplosionClip);
+    }
+
+    public void PlayRaioLunar()
+    {
+        audioSource.PlayOneShot(raioLunarClip);
     }
 }
