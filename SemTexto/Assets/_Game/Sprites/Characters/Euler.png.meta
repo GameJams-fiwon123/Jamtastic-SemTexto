@@ -1,7 +1,37 @@
 fileFormatVersion: 2
-guid: 2c198d1c107f3fd4498e677134225621
+guid: a391bf09b1dec6f4983c7d2a4c6cb3ab
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2628214080874153875
+    second: Euler_0
+  - first:
+      213: -4683728535002347986
+    second: Euler_1
+  - first:
+      213: -2692552829227582361
+    second: Euler_2
+  - first:
+      213: 4711120611312876695
+    second: Euler_3
+  - first:
+      213: -1549934772328245210
+    second: Euler_4
+  - first:
+      213: 2675672666035276929
+    second: Euler_5
+  - first:
+      213: -633608157972792899
+    second: Euler_6
+  - first:
+      213: -209697097064521382
+    second: Euler_7
+  - first:
+      213: 2352659871566447023
+    second: Euler_8
+  - first:
+      213: -7972970991964593534
+    second: Euler_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,12 +70,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,11 +138,53 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Euler_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3970f2c18ca497420800000000000000
+      internalID: 2628214080874153875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Euler_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2603de76bd000fb0800000000000000
+      internalID: -4683728535002347986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1a7c17ba1c5d890438fdd0897a7bea78
     internalID: 0
     vertices: []
     indices: 

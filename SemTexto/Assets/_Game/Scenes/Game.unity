@@ -6112,22 +6112,27 @@ PrefabInstance:
     - target: {fileID: 8615068037235521407, guid: a64d4a99a809e0245ad8836dc68fcd44,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.14738932
+      value: 0.01260066
       objectReference: {fileID: 0}
     - target: {fileID: 8615068037235521407, guid: a64d4a99a809e0245ad8836dc68fcd44,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.93477863
+      value: 0.35736275
       objectReference: {fileID: 0}
     - target: {fileID: 8615068037235521407, guid: a64d4a99a809e0245ad8836dc68fcd44,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.16704139
+      value: -0.066154
       objectReference: {fileID: 0}
     - target: {fileID: 8615068037235521407, guid: a64d4a99a809e0245ad8836dc68fcd44,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.97408277
+      value: 0.37626362
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615068037235521407, guid: a64d4a99a809e0245ad8836dc68fcd44,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9011969786112537877, guid: a64d4a99a809e0245ad8836dc68fcd44,
         type: 3}
@@ -28163,7 +28168,7 @@ GameObject:
   - component: {fileID: 2087073482}
   - component: {fileID: 2087073484}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AudioPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -20,7 +20,7 @@ public class BackgroundManager : MonoBehaviour
     public delegate void ChangedBackground(int idRoom);
     public event ChangedBackground changedBackground;
 
-    float waitTime = 1f;
+    float waitTime = 0f;
     float currentWaitTime = 0f;
 
     private void Awake()
