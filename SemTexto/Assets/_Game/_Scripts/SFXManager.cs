@@ -30,6 +30,10 @@ public class SFXManager : MonoBehaviour
     private AudioClip estalactiteExplosionClip;
     [SerializeField]
     private AudioClip raioLunarClip;
+    [SerializeField]
+    private AudioClip bombClip;
+    [SerializeField]
+    private AudioClip spawnPlayerClip;
 
     public static SFXManager instance;
 
@@ -58,9 +62,19 @@ public class SFXManager : MonoBehaviour
         audioSource.PlayOneShot(openKeyClip);
     }
 
+    public void PlayBomb()
+    {
+        audioSource.PlayOneShot(bombClip);
+    }
+
     public void PlayHammer()
     {
         audioSource.PlayOneShot(hammerClip);
+    }
+
+    public void PlaySpawnPlayer()
+    {
+        audioSource.PlayOneShot(spawnPlayerClip);
     }
 
     public void PlayCorrect()
@@ -80,7 +94,7 @@ public class SFXManager : MonoBehaviour
 
     public void PlayJump()
     {
-        audioSource.PlayOneShot(jumpClip, 0.6f);
+        audioSource.PlayOneShot(jumpClip, 0.4f);
     }
 
     public void PlayQueda()

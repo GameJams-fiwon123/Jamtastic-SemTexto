@@ -6,21 +6,21 @@ using UnityEngine.Animations;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public enum typeTime { Fundo1, Fundo2, Fundo3, Fundo4, Fundo5, Fundo6, Fundo7 }
+    public enum typeTime { Fundo6, Fundo7, Fundo1, Fundo2, Fundo3, Fundo4, Fundo5 }
     public typeTime currentTime = default;
 
     [SerializeField]
     private Animator    anim = default;
 
     private int index = default;
-    private int beforeIndex = default;
+    //private int beforeIndex = default;
 
     public static BackgroundManager instance;
 
     public delegate void ChangedBackground(int idRoom);
     public event ChangedBackground changedBackground;
 
-    float waitTime = 0f;
+    float waitTime = 2f;
     float currentWaitTime = 0f;
 
     private void Awake()
@@ -50,15 +50,15 @@ public class BackgroundManager : MonoBehaviour
     {
         if (currentWaitTime > waitTime)
         {
-            beforeIndex = index;
+            //beforeIndex = index;
             index++;
         }
-        else
-        {
-            int auxIndex = index;
-            index = beforeIndex;
-            beforeIndex = auxIndex;
-        }
+        //else
+        //{
+        //    int auxIndex = index;
+        //    index = beforeIndex;
+        //    beforeIndex = auxIndex;
+        //}
 
 
         currentWaitTime = 0f;

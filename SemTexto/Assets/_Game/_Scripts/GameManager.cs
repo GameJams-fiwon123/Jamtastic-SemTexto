@@ -45,12 +45,12 @@ public class GameManager : MonoBehaviour
                 chanceSpawn = 30;
                 break;
             case 2:
-                chanceSpawn = 70;
                 maxGhostSpawns = 2;
+                chanceSpawn = 70;
                 break;
             case 3:
+                maxGhostSpawns = 2;
                 chanceSpawn = 100;
-                maxGhostSpawns = 3;
                 break;
         }
 
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
                     spawnGhost = 1;
                     break;
                 case 2:
-                    if (randNumber < 50)
+                    if (randNumber < 75)
                     {
                         spawnGhost = 1;
                     } else
@@ -90,17 +90,13 @@ public class GameManager : MonoBehaviour
                     }
                     break;
                 case 3:
-                    if (randNumber < 40)
+                    if (randNumber < 50)
                     {
                         spawnGhost = 1;
                     }
-                    else if (randNumber < 80)
+                    else
                     {
                         spawnGhost = 2;
-                    } 
-                    else 
-                    {
-                        spawnGhost = 3;
                     }
                     break;
             }
